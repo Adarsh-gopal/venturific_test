@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	 <record id="hsn_master_move_form" model="ir.ui.view">
+        <field name="name">hsn.master.form</field>
+        <field name="model">hsn.master</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name='name'/>
+                        <field name='z_description'/>
+                        <field name='zzz_vendor_taxes' context="{'default_type_tax_use': 'purchase', 'search_view_ref': 'account.account_tax_view_search'}" options="{'no_create': True}" optional="show" widget='many2many_tags'/>
+                        <field name='zzz_customer_taxes' options="{'no_create': True}" context="{'search_view_ref': 'account.account_tax_view_search'}" optional="show" widget='many2many_tags'/>
+                        <field name='tax_compute_after_discount'/>
+                        <field name='tax_differenitation'/>
+                    </group>
+                </group>
+                <!-- <group>
+                    <group>
+                         <field name='net_sale_price_is_greater_than' attrs="{'invisible': [('tax_compute_after_discount','=',False)]}"/>
+                         <field name='applicable_sales_tax' attrs="{'invisible': [('tax_compute_after_discount','=',False)]}"/>
+                         <field name='applicable_inter_tax' attrs="{'invisible': [('tax_compute_after_discount','=',False)]}"/>
+                    </group>
+                    <group>
+                        <field name='net_sale_price_is_lesser_than' attrs="{'invisible': [('tax_compute_after_discount','=',False)]}"/>
+                        <field name='applicable_sale_tax' attrs="{'invisible': [('tax_compute_after_discount','=',False)]}"/>
+                        <field name='applicable_inter_state_tax' attrs="{'invisible': [('tax_compute_after_discount','=',False)]}"/>
+                    </group>
+                </group> -->
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_hsn_move_master_tree">
+        <field name="name">view.hsn.move.master.tree</field>
+        <field name="model">hsn.master</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name='name'/>
+                <field name='z_description'/>
+                <!-- <field name='zz_vendor_taxes' />
+                <field name='zz_customer_taxes' /> -->
+            </tree>
+        </field>
+    </record>
+
+    <record id="hsn_master_action_product" model="ir.actions.act_window">
+        <field name="name">HSN</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hsn.master</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_hsn_master" name="HSN Master" action="hsn_master_action_product" parent="stock.menu_stock_config_settings" sequence="99"/>
+
+    <record id="inherit_product_temp_form" model="ir.ui.view">
+        <field name="name">inherit.product.temp.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <field name='l10n_in_hsn_code' position='replace'>
+                <field name='l10n_in_hsn_code' options="{'no_create_edit':True}"/>
+            </field>
+        </field>
+    </record>
+
+
+</odoo>

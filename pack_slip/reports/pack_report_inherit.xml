@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+	<record id="cf_page_format" model="report.paperformat">
+        <field name="name">Venturific Pack page format</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <!-- <field name="page_width">100</field> -->
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">28</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report
+        id="report_pack_slip"
+        string="Pack Slip"
+        model="stock.picking"
+        report_type="qweb-pdf"
+        name="pack_slip.report_packslip_print"
+        file="pack_slip.report_packslip_print"
+        paperformat="pack_slip.cf_page_format"/>
+    
+
+	<template id="report_packslip_print">
+		<t t-call="web.internal_layout">
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="doc">
+				<t t-foreach="doc.get_package_group()" t-as="lines_data">
+					<h2 style="text-align:center;margin_top:20">Packing Slip</h2>
+                    <div class="row">
+                        <div class="col-6">
+                            <div style="text-align:left;margin_left:20" name="company_address" class="mb4">
+                                <span class="company_address" t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
+                            </div>
+        					<strong style="text-align:left;margin_left:20">SO:</strong>
+        					<span t-esc ="doc.origin"/>
+                        </div>
+                        <div class="col-6" style="text-align:right">
+                            <strong style="text-align:right">BOX:</strong>
+                            <span t-esc ="lines_data.name"/>
+                        </div>
+                    </div>
+					<div style="padding:20px;"/>
+					<table class="table table-sm" style="width:100%">
+						<tr>
+							<th  style="text-align:left;">From </th>
+							<th  style="text-align:left;">To </th>
+							<th  style="text-align:left;">Package Reference</th>
+							<th></th>
+						</tr>
+						<tr>
+							<td style="text-align:left;">
+								<t t-esc ="doc.picking_type_id.warehouse_id.name"/>
+							</td>
+							<td style="text-align:left;">
+								<t t-esc ="doc.partner_id.name"/>
+							</td>
+
+							<td style="text-align:left;">
+								<t t-esc="doc.origin"/>
+							</td>
+							<td style="text-align: center">
+                                <t t-if="lines_data.name">
+                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', lines_data.name, 600, 100)" alt="Barcode" style="width:300px;height:50px"/>
+                                      <p t-field="lines_data.name"/>
+                                  </t>
+                            </td>
+						</tr>
+					</table>
+					<div style="padding:20px;"/>
+					<table class="table sm" style="width:100%">
+						<tr>
+							<th style="text-align:left;">Product</th>
+                            <th style="text-align:left;">Class</th>
+							<th style="text-align:left;">Quantity </th>
+							<th style="text-align:left;">UOM</th>
+						
+						</tr>
+						<tr t-foreach="doc.move_line_ids_without_package" t-as="line">
+							<t t-if="lines_data == line.result_package_id">
+								<td><span t-field="line.product_id"/></td>
+                                <td><span t-field="line.product_id.product_class"/></td>
+								<td><span t-field="line.qty_done"/></td>
+								<td><span t-field="line.product_uom_id"/></td>
+							
+							</t>
+						</tr>
+					</table>
+                   <p style="page-break-after:always"></p>
+				</t>
+			</t>
+		</t>
+	</t>
+
+	</template>
+
+	<!-- <template id="report_packslip">
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="doc">
+				<t t-call="pack_slip.report_packslip_print"/>
+
+			</t>
+		</t>
+	</template> -->
+	
+</odoo>

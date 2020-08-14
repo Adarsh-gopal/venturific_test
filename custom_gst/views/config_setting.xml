@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_inherit" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sale.inherit</field>
+        <field name="model">res.config.settings</field>
+        <!-- <field name="priority" eval="10"/> -->
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='sales_settings_invoicing_policy']" position="after">
+                 <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_left_pane"/>
+                    <div class="o_setting_right_pane">
+                        <span class="o_form_label">Tax Computation Margin</span>
+                        <div class="text-muted">
+                            Enter the margin price to compute tax after discount
+                        </div>
+                        <div class="text-muted">
+                            <field name="tax_computation_margin_default"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
