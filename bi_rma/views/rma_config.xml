@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record id="view_rma_config_form" model="ir.ui.view">
+			<field name="name">rma.config.form</field>
+			<field name="model">rma.config</field>
+			<field name="arch" type="xml">
+				<form string="RMA Config" >
+					<field name="name" invisible="1"/>
+					<!-- <group> -->
+						<group string="RMA Picking types">
+							<field name="b2b_source_picking_type_id" />
+							<field name="b2b_destination_picking_type_id"/>
+						</group>
+					<!-- </group> -->							
+				</form>
+			</field>
+		</record>
+
+	
+		<!-- RMA Order -->
+		<record id="action_rma_config" model="ir.actions.act_window">
+			<field name="name">Configuration</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">rma.config</field>
+			<field name="view_mode">form</field>
+		</record>
+
+		<menuitem id="menu_rma_config" name="Configuration"
+				parent="bi_rma.menu_rma_order" action="action_rma_config"
+				sequence="5"/>
+										  
+	</data>
+</odoo>
