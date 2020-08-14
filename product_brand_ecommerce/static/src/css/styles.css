@@ -1,0 +1,367 @@
+#products_grid_before #wsale_products_brands_collapse ~ #wsale_products_attributes_collapse {
+  margin-top: 25px;
+}
+
+#products_grid_before #wsale_products_brands_collapse .nav {
+  padding: 0;
+}
+
+#products_grid_before #wsale_products_brands_collapse .nav:last-child {
+  margin-bottom: 0 !important;
+}
+
+#products_grid_before #wsale_products_brands_collapse .nav li.nav-item {
+  margin: 0;
+  padding: 3px 0;
+  position: relative;
+  font-size: 13px;
+}
+
+#products_grid_before #wsale_products_brands_collapse .nav li.nav-item i.text-primary {
+  cursor: pointer;
+  position: absolute;
+  top: 2px;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  color: #323232 !important;
+}
+
+#products_grid_before #wsale_products_brands_collapse .nav li.nav-item i.text-primary:after, #products_grid_before #wsale_products_brands_collapse .nav li.nav-item i.text-primary:before {
+  content: "";
+  background: currentColor;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+#products_grid_before #wsale_products_brands_collapse .nav li.nav-item i.text-primary:after {
+  height: 10px;
+  width: 2px;
+}
+
+#products_grid_before #wsale_products_brands_collapse .nav li.nav-item i.text-primary:before {
+  width: 10px;
+  height: 2px;
+}
+
+#products_grid_before #wsale_products_brands_collapse .nav li.nav-item i.text-primary.fa-chevron-down {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+  color: #ff615e !important;
+}
+
+#products_grid_before #wsale_products_brands_collapse .nav li.nav-item i.text-primary.fa-chevron-down + a {
+  color: #323232;
+}
+
+#products_grid_before #wsale_products_brands_collapse .nav li.nav-item a {
+  background: none;
+  padding: 0 0 0 22px;
+  position: relative;
+  font-weight: 400;
+  color: #878787;
+  font-size: 14px;
+  display: inline;
+  line-height: 22px;
+}
+
+#products_grid_before #wsale_products_brands_collapse .nav li.nav-item a:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  border: 1px solid #000;
+  position: absolute;
+  top: 1px;
+  left: 0;
+  opacity: 0.2;
+}
+
+#products_grid_before #wsale_products_brands_collapse .nav li.nav-item a:after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  width: 8px;
+  height: 4px;
+  border-left: 1px solid #000;
+  border-bottom: 1px solid #000;
+  top: 5px;
+  transform: rotate(-45deg);
+  opacity: 0;
+}
+
+#products_grid_before #wsale_products_brands_collapse .nav li.nav-item a:hover, #products_grid_before #wsale_products_brands_collapse .nav li.nav-item a.active {
+  background: none;
+  color: #323232;
+}
+
+#products_grid_before #wsale_products_brands_collapse .nav li.nav-item a:hover:before, #products_grid_before #wsale_products_brands_collapse .nav li.nav-item a.active:before {
+  opacity: 1;
+}
+
+#products_grid_before #wsale_products_brands_collapse .nav li.nav-item a.active:after {
+  opacity: 1;
+}
+
+#products_grid_before #wsale_products_brands_collapse .nav ul {
+  margin-left: 15px;
+  padding-top: 10px;
+}
+
+.featuredproduct .card-dymanic{
+  text-align: center !important;
+}
+.card-dynamic{
+
+   position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    /* background-color: #FFFFFF; */
+    background-clip: border-box;
+    /* bofeaturedproductrder: 1px solid rgba(0, 0, 0, 0.125); */
+    border-radius: 0.25rem;
+    text-align: center;
+}
+
+@media (min-width: 992px){
+
+.featuredproduct .o_carousel_product_card .o_carousel_product_card_img_top {
+      height: 8rem;
+  }
+}
+
+/*============= 05. Price Filter ====================*/
+/* Add changes by dharmik for shop price slider */
+.ui-slider {
+  position: relative;
+  text-align: left;
+}
+
+.ui-slider .ui-slider-handle {
+  position: absolute;
+  z-index: 2;
+  width: 1.2em;
+  height: 1.2em;
+  cursor: pointer;
+  -ms-touch-action: none;
+  touch-action: none;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  background-color: #a5806d;
+  border-width: 3px;
+  border-color: #ffffff;
+  border-style: solid;
+  box-shadow: 0px 1px 2px 1px rgba(3, 3, 3, 0.3);
+}
+
+.ui-slider .ui-slider-range {
+  position: absolute;
+  z-index: 1;
+  font-size: .7em;
+  display: block;
+  border-width: 2px;
+  border-color: #a5806d;
+  border-style: solid;
+  background-position: 0 0;
+}
+
+.ui-slider.ui-state-disabled .ui-slider-handle, .ui-slider.ui-state-disabled .ui-slider-range {
+  filter: inherit;
+}
+
+.js_attributes p.te_attr_title i.down-arrow.fa.fa-caret-right {
+  transform: rotate(0deg);
+  transition: transform 0.5s ease-out !important;
+  text-align: center;
+}
+
+.js_attributes .price_filter_head i.te_price_icon {
+  transform: rotate(0deg);
+  transition: transform 0.5s ease-out !important;
+  text-align: center;
+}
+
+/* support: IE8 - See #6727 */
+.ui-slider-horizontal {
+  border: 2px solid #cccccc !important;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+  top: -.6em;
+  margin-left: -.1em;
+}
+
+.ui-slider-horizontal .ui-slider-range {
+  top: -1px;
+  height: 100%;
+}
+
+.ui-slider-horizontal .ui-slider-range-min {
+  left: 0;
+}
+
+.ui-slider-horizontal .ui-slider-range-max {
+  right: 0;
+}
+
+.ui-slider-vertical {
+  width: .8em;
+  height: 100px;
+}
+
+.ui-slider-vertical .ui-slider-handle {
+  left: -.3em;
+  margin-left: 0;
+  margin-bottom: -.6em;
+}
+
+.ui-slider-vertical .ui-slider-range {
+  left: 0;
+  width: 100%;
+}
+
+.ui-slider-vertical .ui-slider-range-min {
+  bottom: 0;
+}
+
+.ui-slider-vertical .ui-slider-range-max {
+  top: 0;
+}
+
+/* end css by dharmik */
+.ept_price_slider_block .price_filter_head {
+  font-size: 0.9375rem;
+  color: #575757;
+  font-family: inherit;
+  text-transform: capitalize;
+  padding-bottom: 5px;
+  border-top: 1px solid #cccccc;
+  margin-top: 10px;
+  padding-top: 15px;
+  cursor: pointer;
+}
+
+.ept_price_slider_block .price_filter_head i {
+  width: 0.8rem;
+  display: inline-block;
+}
+
+.ept_price_slider_block .price_filter_head .price_filter_reset {
+  float: right;
+  color: #a5806d;
+  font-size: 11px;
+  /* Not defined in variable */
+  cursor: pointer;
+  z-index: 98;
+  padding-top: 5px;
+}
+
+.ept_price_slider_block .price_filter_head:hover {
+  color: #a5806d;
+}
+
+.te_price_filter_amount {
+  padding: 0.3rem 0rem;
+}
+
+.te_price_filter_amount div {
+  font-size: 0.8125rem;
+  color: #575757;
+}
+
+.te_pricerange_content {
+  display: none;
+}
+
+.te_pricerange_content #ept_price_slider {
+  width: 95%;
+}
+
+.te_price_wrap {
+  display: -webkit-box; display: -webkit-flex; display: flex;
+  justify-content: center;
+  margin: 15px 0 0 0;
+}
+
+.te_price_wrap .ept_price_min, .te_price_wrap .ept_price_max {
+  font-size: 0.875rem;
+  color: #000000;
+  font-family: inherit;
+  line-height: 1.2em;
+  width: auto;
+  max-width: 80px;
+  text-align: center;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 5px;
+}
+
+.te_price_wrap .te_price_wrap_line {
+  margin: 0 15px;
+}
+
+/*------- Form submit Error Message -------*/
+.price_error_message {
+  display: block;
+  margin-top: 8px;
+  line-height: 130%;
+  color: #721c24;
+  /*This color is not used in variables*/
+  padding: 0.75rem 1.25rem;
+  background-color: #f8d7da;
+  /*This color is not used in variables*/
+  border-color: #f5c6cb;
+  /*This color is not used in variables*/
+  border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  -ms-border-radius: 0.25rem;
+  -o-border-radius: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1a518b; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}

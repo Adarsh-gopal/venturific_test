@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="product_brand_ecommerce.shopbybrand">
+            
+        <div class="sm_megamenu_content mega-menu-brand">
+            <div class="brand-drop-down">
+                <div class="slider-brand-wrapper brand-slider-down">
+                    <t t-foreach="brandsGroupsNew" t-as="brandsNew">
+                        <t t-foreach="brandsNew" t-as="brand"> 
+                            <div class="item">
+                                <a t-att-href="'/shop/brand/' + brand.name +'-'+brand.id" >
+                                    <img t-attf-src="/web/image/product.brand/#{brand.id}#{'/brand_image'}" t-att-alt="brand.name"/>
+                                </a>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

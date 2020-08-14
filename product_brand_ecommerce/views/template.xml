@@ -1,0 +1,75 @@
+<odoo>
+ <template id="brands_recursive" name="Category list">
+        <li class="nav-item">
+            <a t-att-href="keep('/shop/brand/' + slug(c), brand=0)" t-attf-class="nav-link #{'active' if c.id==brand.id else ''}">
+                <span t-field="c.name"/>
+            </a>
+        </li>
+    </template>
+
+    <template id="products_categories" inherit_id="website_sale.products" active="False" customize_show="True" name="Product Brand Filter">
+        <xpath expr="//div[@id='products_grid_before']" position="before">
+            <t t-set="enable_left_column" t-value="True"/>
+        </xpath>
+        <xpath expr="//div[@id='products_grid_before']" position="inside">
+            <!--  <button type="button" class="btn btn-link d-lg-none"
+                data-target="#wsale_product_price_filter" data-toggle="collapse">
+                Show Price Filter
+            </button>
+            <h2>Price Filter</h2>
+            
+            <div class="collapse d-lg-block" id="wsale_product_price_filter">
+            <div class="te_pricerange_content" style="display: block;">
+                        <div class="d-block mb8 te_price_filter_amount">
+                            <div class="d-inline-block">
+                                <label class="">$</label>
+                                <span class="ept_price_min">1499.0</span>
+                                <label class="d-none">$</label>
+                            </div>
+                            <div class="d-inline-block pull-right">
+                                <label class="">$</label>
+                                <span class="ept_price_max">52999.0</span>
+                                <label class="d-none">$</label>
+                            </div>
+                        </div>
+                        <div id="ept_price_slider" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"><div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0%; width: 100%;"></div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0%;"></span><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 100%;"></span></div>
+                        <div class="te_price_wrap">
+                            <div class="te_price_min">
+                                <label class="">$</label>
+                                <input name="min_price" type="number" class="sliderValue ept_price_min" data-index="0" value="1499.0"/>
+                                <label class="d-none">$</label>
+                            </div>
+                            <div class="te_price_wrap_line">-</div>
+                            <div class="te_price_max">
+                                <label class="">$</label>
+                                <input name="max_price" type="number" class="sliderValue ept_price_max" data-index="1" value="52999.0"/>
+                                <label class="d-none">$</label>
+                            </div>
+                        </div>
+                        <span class="ept_price_slider_error"></span>
+                        <span class="w-100 btn btn-primary mt16 rounded py-1" id="price_slider_filter">apply
+                            filter
+                        </span>
+                    </div>
+                </div> -->
+
+
+            <button type="button" class="btn btn-link d-lg-none"
+                data-target="#wsale_products_brands_collapse" data-toggle="collapse">
+                Show Brands
+            </button>
+            <h2>Product By Brands</h2>
+
+            <div class="collapse d-lg-block" id="wsale_products_brands_collapse" style="height: 250px; overflow: overlay;">
+                <ul class="nav nav-pills flex-column mb-2">
+                    <li class="nav-item">
+                        <a t-att-href="keep('/shop', brand=0)" t-attf-class="nav-link #{'' if brand else 'active'} o_not_editable">All Brands</a>
+                    </li>
+                    <t t-foreach="brands" t-as="c">
+                        <t t-call="product_brand_ecommerce.brands_recursive" />
+                    </t>
+                </ul>
+            </div>
+        </xpath>
+    </template>
+</odoo>
