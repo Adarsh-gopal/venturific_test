@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="seq_rma_order" model="ir.sequence">
+            <field name="name">Bulk RMA Order</field>
+            <field name="code">bulk.rma</field>
+            <field name="prefix">BRMA</field>
+            <field name="padding">4</field>
+        </record>
+
+    </data>
+</odoo>

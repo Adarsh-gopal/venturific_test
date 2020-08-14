@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+bulk_rma,bulk_rma_model,venturific_bulk_rma.model_bulk_rma,,1,1,1,1
+bulk_rma_lines,bulk_rma_lines_model,venturific_bulk_rma.model_bulk_rma_lines,,1,1,1,1

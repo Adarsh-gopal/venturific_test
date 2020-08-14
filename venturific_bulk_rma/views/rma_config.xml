@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+      <record id="view_rma_config_form_inherit" model="ir.ui.view">
+        <field name="name">rma.config.form.inherit</field>
+        <field name="model">rma.config</field>
+        <field name="inherit_id" ref="bi_rma.view_rma_config_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//form" position="inside">
+            <group string="Bulk RMA">
+              <div>
+                <strong>Refund Date should not be more than  <field name="refund_days" style="color:#008784" class="oe_inline"/> days of Invoice date.
+                 </strong>
+              </div>
+            </group>
+          </xpath>
+        </field>
+      </record>
+    </data>
+</odoo>
