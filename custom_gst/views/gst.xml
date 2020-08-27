@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	 <record id="inherited_gst_sale_order_view" model="ir.ui.view">
+        <field name="name">inherited.gst.sale.order.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+        	<!-- <xpath expr="//group[@name='note_group']" position="before">
+        		<div class="oe_right">
+                    <button name="tax_inc" class="btn btn-secondary" string="Tax Compute"
+                            type="object" attrs="{'invisible': [('button_visible','=',False)]}"/>
+                </div>
+            </xpath> -->
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_total']" position="after" >
+                <field name='total_tax' invisible='0'/>
+            </xpath>
+         </field>
+    </record>
+</odoo>

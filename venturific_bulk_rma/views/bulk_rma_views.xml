@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+            <!-- RMA Order View-->
+        <record id="view_bulk_rma_order_tree" model="ir.ui.view">
+            <field name="name">bulk.rma.order.tree</field>
+            <field name="model">bulk.rma</field>
+            <field name="arch" type="xml">
+                <tree string="RMA Orders">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="partner"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- RMA Main -->
+        <record id="view_bulk_rma_order_form" model="ir.ui.view">
+            <field name="name">rma.order.form</field>
+            <field name="model">bulk.rma</field>
+            <field name="arch" type="xml">
+                <form string="Bulk RMA Order">
+                    <header>   
+
+                        <button name="validate_grn" string="VALIDATE GRN" type="object" class="btn-primary" attrs="{'invisible': [('state', 'in', ['approved','processing','reject','close'])]}"/>
+
+                        
+                        <button name="action_move_to_draft" string="SET TO DRAFT" type="object" class="btn-primary" attrs="{'invisible': [('state', 'in', ['processing','draft', 'close'])]}"/>
+
+                        <button name="generate_credit_note" string="GENERATE CREDIT NOTE" type="object" class="btn-primary" attrs="{'invisible': ['|',('state', 'in', ['approved','draft','close', 'reject'])]}"/>
+
+                        <button name="action_close" string="CLOSE" type="object" class="btn-primary" attrs="{'invisible': [('state', 'in', ['approved','draft', 'reject','close'])]}"/>
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,processing,close,approved"/>
+                    </header>                    
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object"
+                                name="action_view_receipt"
+                                class="oe_stat_button"
+                                icon="fa-truck"
+                                attrs="{'invisible': [('in_delivery_count', '=', 0)]}">
+                                <field name="in_delivery_count" widget="statinfo" string="Picking Order"/>
+                            </button>
+                            <button type="object"
+                                name="action_view_refund_invoice"
+                                class="oe_stat_button"
+                                icon="fa-money"
+                                attrs="{'invisible': [('refund_inv_count', '=', 0)]}">
+                                <field name="refund_inv_count" widget="statinfo" string="Refund Invoices"/>
+                            </button>
+                        
+                        </div>
+
+                        <group>
+                            <div class="oe_title">
+                                <h1>
+                                    <field name="name" nolabel="1" readonly="True"/>
+                                </h1>
+                            </div>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="company_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="partner"/>
+                                <field name="refund_days" invisible="1"/>
+                                <field name="mark_all"/>
+                            </group>
+                            <group>
+                                <field name="date" widget="datetime" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="priority" widget='priority' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Bulk RMA Details">
+
+                                <field name="rma_line_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                     >
+                                    <tree editable="bottom" decoration-danger="num_of_days &gt; refund_days" decoration-success="num_of_days &lt; refund_days">
+                                        
+                                        <field name="barcode" optional="show" required="True"/>
+                         <!--                <field name="credit_note" optional="show" readonly="False"/> -->
+                                        <field name="return_approve" optional="show" readonly="False"/>
+                                        <field name="product_id" optional="show" readonly="True"/>
+                                        <field name="product_class" optional="show" readonly="True"/>
+                                        <field name="partner" optional="show" readonly="True"/>
+                                        <field name="return_date" optional="show" readonly="True"/>
+                                        <field name="delivery_order" optional="show" readonly="True"/>
+                                        <field name="delivery_date" optional="show" readonly="True"/>
+                                        <field name="delivered_qty" optional="show" readonly="True"/>
+                                        <field name="invoice_number" optional="show" readonly="True"/>
+                                        <field name="invoice_date" optional="show" readonly="True"/>
+                                        <field name="num_of_days" optional="show" readonly="True"/>
+                                        <field name="invoice_status" optional="show" readonly="True"/>
+                                        <field name="grn_ref" optional="show" readonly="True"/>
+                                        <field name="sale_order" optional="show" readonly="True"/>
+                                        <field name="refund_days" optional="hide" invisible="1" readonly="True"/>
+                                    </tree>
+                                </field>
+                               
+
+                                <label for="rma_note" string="Bulk RMA Notes" style="font-size:15px;" class="mt16 mb16 text-muted"/>
+                                <field name="rma_note" nolabel="1"/>
+
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- RMA Order -->
+        <record id="action_buk_rma_order" model="ir.actions.act_window">
+            <field name="name">Bulk RMA Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bulk.rma</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        
+        <menuitem id="menu_bulk_return_order" name="Bulk RMA Order"
+                parent="bi_rma.menu_rma_b2b" action="action_buk_rma_order"
+                sequence="3"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_discount_coustom_view_form" model="ir.ui.view">
+        <field name="name">sale.discount.custom.form</field>
+        <field name="model">custom.sale.discount</field>
+        <field name="arch" type="xml">
+            <form string="Apply Discount">
+                <group>
+                    <group>
+                        <field name="discount"/>
+                    </group>
+                </group>
+                <group>
+                    <group>
+                        <field name="flat_discount" attrs="{'invisible': ['|','|',('discount','=','disc'),('discount','=','premium'),('discount','=',False)]}"/>
+                        <field name="disc" attrs="{'invisible': ['|','|',('discount','=','flat_disc'),('discount','=','premium'),('discount','=',False)]}"/>
+                        <field name="premium_disc" attrs="{'invisible': ['|','|',('discount','=','flat_disc'),('discount','=','disc'),('discount','=',False)]}"/>
+                        <field name="non_premium_disc" attrs="{'invisible': ['|','|',('discount','=','flat_disc'),('discount','=','disc'),('discount','=',False)]}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="process_discount" string="Apply" type="object" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_discount_custom_action" model="ir.actions.act_window">
+        <field name="name">Select the Discount</field>
+        <field name="res_model">custom.sale.discount</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="type">ir.actions.act_window </field>
+        <field name="view_id" ref="sale_discount_coustom_view_form"/>
+     </record>
+
+</odoo>

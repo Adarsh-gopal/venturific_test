@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+	<template id="dynamic_brand_slider" name="Dynamic Brand Slider">
+	    <section class="s_wsale_dynamic_brand_slider pt24 pb24" style="background: #f0f0f0;">
+	        <div class="container">
+
+	           <div class="title-home-page">SHOP BY BRAND</div>
+	            <div class="slider o_not_editable" />
+	        </div>
+	    </section>
+	</template>
+	
+
+	<template id="shop_by_brand_mm" name="shop by brand mega menu">
+		<section class="shop_by_brand_megamenu py-4">
+	        <div class="container">
+	        	<div class="row">
+	            <div class="sm_megamenu_title"><span>SHOP BY BRAND</span></div>
+	             <div class="brand-megamenu o_not_editable"/>
+		            <!-- <div class="sm_megamenu_content">
+		            <div class="brand-drop-down">
+		           		 <div class="slider-brand-wrapper brand-slider-down">
+		            		<div class="item"><a title="Jaquar" href="#"><img src="https://images.buildpro.store/pub/media/wysiwyg/brand_logo/jaquar.jpg" alt="Jaquar-brand"/></a></div>
+		           
+
+		            </div>
+		            </div>
+	        	</div> -->
+	            </div>
+	          </div>
+	        </section>
+
+</template>
+
+	<template id="snippets_alansari" inherit_id="website.snippets" name="custom snippets">
+		<xpath expr="//div[@id='snippet_feature']/div[@class='o_panel_body']" position="inside">
+            <t t-snippet="product_brand_ecommerce.dynamic_brand_slider" t-thumbnail="/website/static/src/img/snippets_thumbs/s_products_recently_viewed.png"/>
+  			<!-- <t t-snippet="product_brand_ecommerce.brand_slider_new" t-thumbnail="/website/static/src/img/snippets_thumbs/s_products_recently_viewed.png"/> -->
+		</xpath>
+	</template>
+
+	<template id="mega_menu_snippet2" inherit_id="website.snippets" name="mega menu snippet place">
+		<xpath expr="//div[@id='snippet_mega_menu']/div[hasclass('o_panel_body')]" position="inside">
+
+			<t t-snippet="product_brand_ecommerce.shop_by_brand_mm"
+		   t-thumbnail="/theme_alansari/static/src/img/ui/snippet_thumb.jpg"/>
+
+		</xpath>
+
+	</template>
+
+</odoo>

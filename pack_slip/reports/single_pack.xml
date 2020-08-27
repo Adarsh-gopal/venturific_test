@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+
+    
+
+    <template id="sale_order_report_single_packslip_print">
+        <t t-call="web.internal_layout">
+        <t t-call="web.html_container">
+            <t t-foreach="report_data['order']" t-as="doc">
+                <!-- <t t-foreach="doc.get_package_group()" t-as="lines_data"> -->
+                    <t t-set="lines_data" t-value="report_data['pack_id']"/>
+                    <div>
+                        <span style="float:right"><strong> <span t-esc="doc.customer_code"/>/<span t-esc="doc.name"/>/<span t-esc="lines_data.name"/></strong></span>
+                    </div><br/>
+                    <div style="text-align:center;margin-top:20px">
+                        <h2 >Pre-Packing Slip</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div style="text-align:left;margin_left:20"  class="mb4">
+                                 <strong>Customer Name:</strong>&#160;<span class="company_address" t-field="doc.partner_id.name"/>
+                            </div>
+                             <div style="text-align:left;margin_left:20"  class="mb4">
+                                <strong>Customer Code:</strong>&#160;<span t-esc="doc.customer_code"/>
+                            </div>
+                            <div style="text-align:left;margin_left:20"  class="mb4">
+                                <strong style="text-align:left;margin_left:20">SO:</strong>&#160;<span t-esc ="doc.name"/>
+                            </div>
+
+                        </div>
+                        <div class="col-6" style="text-align:center">
+                            <span t-esc ="lines_data.name"/><br/>
+                            <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', lines_data.name, 600, 100)" alt="Barcode" style="width:300px;height:50px;text-align:right"/>
+                        </div>
+                    </div>
+                    <div style="padding:20px;"/>
+                    <div style="padding:20px;"/>
+                    <table class="table sm" style="width:100%">
+                        <tr>
+                            <th style="text-align:left;">Sl No</th>
+                            <th style="text-align:left;">Product</th>
+                            <th style="text-align:left;">Class</th>
+                            <th style="text-align:left;">Quantity </th>
+                            <th style="text-align:left;">UOM</th>
+                            <th style="text-align:left;">MRP</th>
+                        
+                        </tr>
+                        <t t-set="tot_qty" t-value="0.0"/>
+                        <t t-set="sl_no" t-value="1"/>
+                        <tr t-foreach="doc.order_line" t-as="line">
+                            <t t-if="lines_data == line.boxs">
+                                <td><span t-esc="sl_no"/></td>
+                                <td><span t-field="line.product_id.name"/></td>
+                                <td><span t-field="line.product_id.product_class"/></td>
+                                <td><span t-field="line.product_uom_qty"/></td>
+                                <td><span t-field="line.product_uom.name"/></td>
+                                <td><span t-field="line.price_unit"/></td>
+                            <t t-set="tot_qty" t-value="tot_qty + line.product_uom_qty"/>
+                            <t t-set="sl_no" t-value="sl_no + 1"/>
+                            </t>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align:right"><strong style="border-bottom:1px solid black;">Total Quantity:</strong></td>
+                            <td><strong><span t-esc="tot_qty"  style="border-bottom:1px solid black;"/></strong></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                   <p style="page-break-after:always"></p>
+                <!-- </t> -->
+            </t>
+        </t>
+    </t>
+
+    </template>
+
+    <report
+        id="sale_order_report_pack_slip_single"
+        string="Pre-Pack Slip Single Pack"
+        model="sale.order"
+        report_type="qweb-pdf"
+        name="pack_slip.sale_order_report_single_packslip_print"
+        file="pack_slip.sale_order_report_single_packslip_print"
+        paperformat="pack_slip.cf_page_format"
+        print_report_name="(object._get_report_base_filename())"
+        menu="False"/>
+    
+</odoo>
