@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="product_technical_infos" inherit_id="website_sale.product" customize_show="True" name="Product Technical Details"  priority="17">
+        <xpath expr="." position="inside">
+            <style>
+                @media only screen and (min-width: 992px) {
+                    .div-middle{
+                     position:relative;
+                     top:42%;
+                    }
+                }
+            </style>
+
+        </xpath>
+       
+        <xpath expr="//div[@id='product_full_description']" position="after">
+            <section class="container" id="sale_description_product">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h3 class="text-center div-middle" >Product Description</h3>
+                    </div>
+                    <div class="col-lg-8">
+                        <p t-field="product.description_sale" class="text-muted mt-3" placeholder="A short description that will also appear on documents." />
+                    </div>
+                </div>
+            </section>
+
+            <section class="container" id="product_technical_details">
+                <t t-if="len(product.product_tech_line_ids) &gt; 0">
+                    <div class="row">
+                         <div class="col-lg-4">
+                            <h3 class="text-center div-middle" >Technical Details</h3>
+                        </div>
+                        <div class="col-lg-8" id="product_technical_information">
+                            <table style="table-layout: fixed;margin-bottom: 22px; border-bottom: 1px solid #e7e7e7; border-collapse: collapse;    width: 100%;">
+                                <tbody>
+                                    <t t-foreach="product.product_tech_line_ids" t-as="tec_spec">
+                                        <tr>
+                                            <th style="padding: 7px 14px 6px;border-top: 1px solid #e7e7e7; background-color: #f3f3f3;color: #111;    font-weight: 400;" ><span t-esc="tec_spec.name"/></th>
+                                            <td style="padding: 7px 14px 6px;border-top: 1px solid #e7e7e7;" ><span t-esc="tec_spec.description"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                     
+                        </div>
+                    </div> 
+                </t>                  
+            </section>
+        </xpath>
+        <xpath expr="//hr[@t-if='product.description_sale']" position="replace">
+        </xpath>
+        
+        <xpath expr="//p[@t-field='product.description_sale']" position="replace">
+
+        </xpath>
+    </template>
+</odoo>
