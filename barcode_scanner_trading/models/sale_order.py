@@ -90,6 +90,7 @@ class sale_order(models.Model):
                         'product_uom': search_product.uom_id.id,
                         'product_uom_qty': 1,
                         'boxs':self.box.id,
+                        'tax_id':search_product.taxes_id,
                         'price_unit': search_product.lst_price,
                         'sh_sale_barcode_scanner_is_last_scanned': is_last_scanned,
                         'sequence' : sequence,                        

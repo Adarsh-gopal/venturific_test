@@ -6,7 +6,7 @@
     'company': 'Prixgen Tech Solutions Pvt. Ltd.',
     'website': 'https://www.prixgen.com',  
         
-    'version': '13.0.0.1',
+    'version': '13.0.0.2',
         
     "category": "Extra Tools",
 
